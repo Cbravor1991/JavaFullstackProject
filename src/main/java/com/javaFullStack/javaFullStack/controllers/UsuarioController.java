@@ -2,6 +2,8 @@ package com.javaFullStack.javaFullStack.controllers;
 
 import com.javaFullStack.javaFullStack.dao.UsuarioDao;
 import com.javaFullStack.javaFullStack.models.Usuario;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +34,13 @@ public class UsuarioController {
 
     @RequestMapping(value = "api/usuarios", method = RequestMethod.POST)
     public void registrarUsuarios(@RequestBody Usuario usuario){
+
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        // Convertir la contraseña a char[]
+        char[] passwordChars = usuario.getPassword().toCharArray();
+        String hash = argon2.hash(1, 1024, 1, passwordChars);
+        argon2.wipeArray(passwordChars);
+        usuario.setPassword(hash);
         usuarioDao.registrar(usuario);
     }
 

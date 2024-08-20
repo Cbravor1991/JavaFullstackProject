@@ -1,4 +1,6 @@
 package com.javaFullStack.javaFullStack.dao;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,13 +40,21 @@ public class UsuarioDaoImp implements UsuarioDao {
 
     @Override
     public boolean verificarCredenciales(Usuario usuario) {
-        String query = "FROM Usuario WHERE email = :email AND password= :password";
+        String query = "FROM Usuario WHERE email = :email";
         List<Usuario> lista = entityManager.createQuery(query)
                 .setParameter("email", usuario.getEmail())
-                .setParameter("password", usuario.getPassword())
                 .getResultList();
 
-        return !lista.isEmpty();
+        if (lista.isEmpty()){
+            return false;
+        }
 
+        String passwordHashed = lista.get(0).getPassword();
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        char[] passwordChars = usuario.getPassword().toCharArray();
+        boolean isValid = argon2.verify(passwordHashed, passwordChars);
+        argon2.wipeArray(passwordChars);
+
+        return isValid;
 
 }}
