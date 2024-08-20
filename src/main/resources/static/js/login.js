@@ -19,7 +19,9 @@ async function iniciarSesion() {
 
       const response = await request.text();
 
-      if (response == 'CREDENCIALES CORRECTAS'){
+      if (response !='FAIL'){
+        localStorage.token = response;
+        localStorage.email = datos.email;
         window.location.href = 'usuarios.html'
       }else {
         alert("Las credenciales son incorrectas. Reintentar")
