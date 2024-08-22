@@ -26,8 +26,8 @@ async function registrarUsuario() {
         },
         body: JSON.stringify(datos)
       });
-      alert("Cuenta creada");
-      window.location.href = 'usuarios.html'
+      alert("Se creo la cuenta");
+      window.location.href = 'login.html'
 
 
 
