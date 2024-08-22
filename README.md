@@ -20,12 +20,14 @@ Este proyecto es una **aplicación web desarrollada en Java** para la administra
 - **JWT (JSON Web Tokens)**: Para la autenticación y autorización de usuarios.
 - **Maven**: Herramienta de gestión de proyectos y dependencias.
 - **XAMPP con phpMyAdmin**: Utilizado para la creación y gestión de la base de datos durante el desarrollo.
+- **IntelliJ IDEA Community Edition 2024**: Entorno de desarrollo utilizado en el proyecto.
 
 ## Requisitos para Ejecutar el Proyecto
 
 1. **Base de Datos**: La base de datos debe llamarse `javafullstack`. Aunque la base de datos se creó utilizando XAMPP con phpMyAdmin, cualquier herramienta que permita gestionar bases de datos MySQL puede usarse para crear y gestionar la base de datos con el nombre especificado. Asegúrate de que la base de datos esté configurada en tu entorno.
 2. **Entorno de Desarrollo**: Asegúrate de tener Java 21 y Maven instalados.
 3. **Configuración de la Base de Datos**: Asegúrate de que la URL y las credenciales de la base de datos estén correctamente configuradas en el archivo de propiedades del proyecto.
+4. **Ejecución del Proyecto**: Clona el proyecto desde el repositorio. Para ejecutar el proyecto, abre el proyecto en IntelliJ IDEA y utiliza la opción **Spring Boot Run** en la interfaz de IntelliJ IDEA.
 
 ## Flujo de la Aplicación
 
